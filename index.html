@@ -1,175 +1,229 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4f1"><title>Our Home Dashboard</title><style>
-:root{--bg:#f5f4f1;--card:#fff;--text:#252625;--muted:#777;--line:#e8e7e3;--green:#5d8b73;--blue:#5b9fe3;--pink:#e86b91;--orange:#e89b48;--shadow:0 3px 14px #00000012}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{padding:12px 14px 16px}.top{display:grid;grid-template-columns:300px 1fr 410px;gap:12px;margin-bottom:12px}.greeting,.weekbar,.weather,.card{background:#fff;border:1px solid #eee;border-radius:16px;box-shadow:var(--shadow)}.greeting{padding:20px 24px}.small{font-size:14px;color:var(--muted)}.hello{font-size:22px;font-weight:600}.clock{font-size:44px;font-weight:650;line-height:1.1}.date{font-size:14px;color:var(--muted)}.weekbar{display:grid;grid-template-columns:repeat(5,1fr);padding:9px}.day{border-right:1px solid var(--line);text-align:center;padding:7px}.day:last-child{border:0}.dayname{font-size:12px;color:var(--muted)}.daynum{font-size:24px;font-weight:600;margin:5px auto}.daynum.active{width:36px;height:36px;line-height:36px;background:#216ed4;color:#fff;border-radius:50%}.stats{font-size:11px;color:var(--muted);line-height:1.5}.weather{padding:15px 18px;background:linear-gradient(135deg,#64aae9,#4f91d6);color:white;display:grid;grid-template-columns:1fr auto;gap:8px 12px}.weatherMain{display:flex;align-items:center;gap:12px}.weatherIcon{font-size:50px}.temp{font-size:42px;font-weight:650}.loc{font-size:14px}.weatherSide{text-align:right;font-size:12px;line-height:1.7}.forecast{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #ffffff44;padding-top:7px;text-align:center;font-size:11px}.forecast b{display:block;font-size:20px;margin:3px}.content{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(430px,1fr);gap:12px}.card{padding:14px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.head h2{font-size:23px;margin:0}.controls{display:flex;gap:6px}.btn{border:1px solid var(--line);background:#fafaf9;border-radius:9px;padding:7px 11px}.calendar{width:100%;border-collapse:collapse;table-layout:fixed}.calendar th{font-size:11px;color:var(--muted);font-weight:500;padding:8px;border-bottom:1px solid var(--line)}.calendar td{height:122px;vertical-align:top;border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:6px;overflow:hidden}.calendar td:last-child{border-right:0}.num{display:inline-flex;min-width:24px;height:24px;align-items:center;justify-content:center;font-size:14px;font-weight:600}.num.today{background:#216ed4;color:#fff;border-radius:50%}.event{font-size:11px;margin-top:6px;padding:4px 5px;border-radius:6px;background:#f1f1f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:4px solid #999}.work{border-color:#8a77d6}.health{border-color:#5fa79a}.family{border-color:#e66a8f}.social{border-color:#65b6db}.pay{border-left:0;font-weight:600}.legend{display:flex;gap:15px;color:var(--muted);font-size:11px;padding-top:8px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px}.side{display:grid;grid-template-columns:1fr 1fr;gap:12px}.listCard{min-height:290px}.title{display:flex;align-items:center;gap:9px;margin-bottom:11px}.title h3{margin:0;font-size:20px}.icon{width:33px;height:33px;border-radius:50%;display:grid;place-items:center}.green{background:#e7f1eb}.orange{background:#fff0df}.blue{background:#e8f2fb}.list{display:flex;flex-direction:column;gap:6px}.item{display:grid;grid-template-columns:17px 1fr 18px;gap:7px;align-items:center;font-size:14px;padding:3px 0}.item input{width:18px;height:18px;accent-color:var(--green);cursor:pointer}.item span{cursor:default}.item.done span{text-decoration:line-through;color:#aaa}.x{border:0;background:none;color:#aaa;opacity:0}.item:hover .x{opacity:1}.add{border:0;background:none;color:#666;padding:9px 0;font-size:14px}.miniWeather{min-height:290px;padding:17px;background:linear-gradient(#e2f2fb,#f5f8fa);position:relative;overflow:hidden}.miniWeather .sun{position:absolute;right:20px;top:35px;font-size:58px}.miniTemp{font-size:34px;font-weight:650;margin-top:12px}.mountain{position:absolute;left:0;right:0;bottom:0;height:75px;background:#8ca986;clip-path:polygon(0 70%,20% 38%,35% 62%,50% 28%,65% 60%,80% 35%,100% 58%,100% 100%,0 100%)}.miniForecast{position:absolute;left:12px;right:12px;bottom:10px;display:grid;grid-template-columns:repeat(5,1fr);text-align:center;color:white;font-size:10px;text-shadow:0 1px 2px #465746}.notes{grid-column:1/-1}.notesGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.note{min-height:92px;border-radius:10px;padding:13px;position:relative;box-shadow:0 2px 7px #0000000d}.note:nth-child(5n+1){background:#fff4bd}.note:nth-child(5n+2){background:#e4f4d8}.note:nth-child(5n+3){background:#dceefa}.note:nth-child(5n+4){background:#fde0df}.note:nth-child(5n){background:#eee4fb}.noteText{font-size:14px;line-height:1.35}.deleteNote{position:absolute;right:5px;bottom:3px;border:0;background:none;color:#888}.modal{position:fixed;inset:0;background:#0005;display:none;place-items:center}.modal.show{display:grid}.modalBox{background:#fff;border-radius:15px;padding:20px;width:min(420px,90vw)}.modalBox input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px}.actions{display:flex;justify-content:flex-end;gap:7px;margin-top:12px}@media(max-width:1100px){.top{grid-template-columns:1fr 1.4fr}.weather{grid-column:1/-1}.content{grid-template-columns:1fr}}@media(max-width:800px){.top{grid-template-columns:1fr}.weekbar{display:none}.side{grid-template-columns:1fr}.notesGrid{grid-template-columns:1fr 1fr}.calendar td{height:90px}}
-</style></head><body><div class="app">
-<section class="top"><div class="greeting"><div class="small">Home command centre</div><div class="hello">Good morning ☀️</div><div class="clock" id="clock">--:--</div><div class="date" id="date"></div></div><div class="weekbar" id="week"></div><div class="weather"><div class="weatherMain"><div class="weatherIcon">☀️</div><div><div class="temp">14°C</div><div class="loc">Mt Barker · Sunny</div></div></div><div class="weatherSide">Feels like 13°<br>Wind SW 16 km/h<br>Humidity 52%</div><div class="forecast"><div>WED<b>☀️</b>18° / 9°</div><div>THU<b>☀️</b>19° / 8°</div><div>FRI<b>🌧️</b>15° / 7°</div><div>SAT<b>☀️</b>17° / 7°</div><div>SUN<b>☀️</b>18° / 8°</div></div></div></section>
-<section class="content"><div class="card"><div class="head"><h2 id="month"></h2><div class="controls"><button class="btn" id="prev">‹</button><button class="btn" id="today">Today</button><button class="btn" id="next">›</button><button class="btn">▣</button><button class="btn">Month⌄</button></div></div><table class="calendar"><thead><tr><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th></tr></thead><tbody id="cal"></tbody></table><div class="legend"><span><i class="dot" style="background:#8a77d6"></i>Work</span><span><i class="dot" style="background:#5fa79a"></i>Health</span><span><i class="dot" style="background:#e66a8f"></i>Family</span><span><i class="dot" style="background:#65b6db"></i>Social</span><span><i class="dot" style="background:#999"></i>Other</span></div></div>
-<div class="side"><div class="card listCard"><div class="title"><div class="icon green">🛒</div><h3>Shopping list <span title="Synced live with The Sarahs" style="font-size:11px;color:#5d8b73;vertical-align:middle">● live</span></h3></div><div class="list" id="shopping"></div><button class="add" onclick="addItem('shopping')">＋ Add item</button></div><div class="card listCard"><div class="title"><div class="icon orange">🍴</div><h3>Meal requests</h3></div><div class="list" id="meals"></div><button class="add" onclick="addItem('meals')">＋ Add item</button></div><div class="card listCard"><div class="title"><div class="icon blue">⌂</div><h3>Home to do list</h3></div><div class="list" id="home"></div><button class="add" onclick="addItem('home')">＋ Add item</button></div><div class="card miniWeather"><b>Mt Barker</b><div class="miniTemp">14°C</div><div>Sunny</div><div class="sun">☀️</div><div class="mountain"></div><div class="miniForecast"><span>WED<br>☀️<br>18°</span><span>THU<br>☀️<br>19°</span><span>FRI<br>🌧️<br>15°</span><span>SAT<br>☀️<br>17°</span><span>SUN<br>☀️<br>18°</span></div></div><div class="card notes"><div class="title"><div class="icon" style="background:#eee8ff">▣</div><h3>Notes</h3></div><div class="notesGrid" id="notes"></div><button class="add" onclick="addNote()">＋ New note</button></div></div></section></div>
-<div class="modal" id="modal"><div class="modalBox"><h3 id="modalTitle">Add item</h3><input id="input"><div class="actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveModal()">Add</button></div></div></div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f5f0">
+<title>Our Home</title>
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdfa;--ink:#242522;--muted:#77766f;--line:#e8e4dc;--green:#58744c;--purple:#7959b6;--pink:#df6e96;--blue:#68a6c7;--shadow:0 2px 12px rgba(48,42,32,.055);--radius:10px}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer}input[type=file]{display:none}
+.app{width:100vw;height:100vh;padding:12px;display:grid;grid-template-rows:30% 1fr;gap:10px}
+.top{display:grid;grid-template-columns:27% 36.5% 36.5%;gap:10px;min-height:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0;min-height:0}
+.greeting{padding:22px 26px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#fffdf9,#f8f2e8)}
+.script{font-family:Georgia,serif;font-style:italic;font-size:clamp(20px,2vw,30px);color:#6d4e39}.sun{font-style:normal;color:#e5a040;margin-left:8px}
+.clock{font-size:clamp(38px,4vw,58px);font-weight:650;letter-spacing:-2px;line-height:1.05;margin:7px 0}.date{font-size:clamp(13px,1.15vw,17px);color:var(--muted)}
+.weather{padding:18px 24px 12px;display:grid;grid-template-rows:auto 1fr;background:linear-gradient(145deg,#f4f5ee,#f8f8f5)}
+.weather-title{font-family:Georgia,serif;font-size:clamp(18px,1.5vw,24px);margin-bottom:7px}.weather-main{display:grid;grid-template-columns:1.35fr .8fr;align-items:center;min-height:0}
+.weather-current{display:flex;align-items:center;gap:16px}.weather-icon{font-size:clamp(42px,4.2vw,64px);line-height:1}.temp{font-size:clamp(35px,3.3vw,50px);font-weight:500}.condition{font-size:14px;margin-top:3px}.stats{font-size:13px;line-height:1.65;color:#565750}
+.forecast{grid-column:1/-1;border-top:1px solid var(--line);padding-top:9px;display:grid;grid-template-columns:repeat(5,1fr);align-items:end}
+.forecast-day{text-align:center;font-size:11px;color:#3d3e39}.forecast-day .ficon{font-size:20px;margin:5px 0 2px}.forecast-day .temps{font-size:11px;color:#55564f}
+.middle{display:grid;grid-template-columns:60% 40%;gap:10px;min-height:0}.calendar-panel{padding:12px 14px 8px;display:grid;grid-template-rows:auto 1fr auto;min-height:0}
+.calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.calendar-head h1{font-family:Georgia,serif;font-size:clamp(21px,2vw,30px);font-weight:500;margin:0}.calendar-controls{display:flex;gap:6px}.ctrl{background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 11px;color:#444}.ctrl:hover{background:#f4f2ec}
+.calendar-wrap{min-height:0}table.calendar{width:100%;height:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.calendar th{font-size:11px;font-weight:500;color:#66665f;padding:5px 2px}.calendar td{border-top:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;padding:5px 6px;overflow:hidden;height:20%}.calendar td:first-child{border-left:1px solid var(--line)}.calendar tr:last-child td{border-bottom:1px solid var(--line)}
+.daynum{font-size:12px;display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px}.daynum.today{background:var(--green);color:white;border-radius:50%}
+.event{margin-top:4px;padding:3px 5px;border-radius:5px;background:#f0efeb;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:3px solid #777}.event.work{border-left-color:var(--green)}.event.health{border-left-color:var(--purple)}.event.family{border-left-color:var(--pink)}.event.social{border-left-color:var(--blue)}.event.pay{background:#e9e9e7;border-left-color:#555}
+.legend{display:flex;gap:14px;flex-wrap:wrap;color:#77766f;font-size:10px;padding:7px 3px 0}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.lwork{background:var(--green)}.lhealth{background:var(--purple)}.lfamily{background:var(--pink)}.lsocial{background:var(--blue)}.lother{background:#555}
+.right{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:0}.card{padding:14px;min-width:0;min-height:0}.card-title{display:flex;align-items:center;gap:9px;margin-bottom:10px}.icon{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none}.icon.green{background:#edf3e9}.icon.orange{background:#fff1df}.icon.blue{background:#edf4fb}.icon.purple{background:#f1eafb}.card h2{font-family:Georgia,serif;font-size:19px;font-weight:500;margin:0}
+.list{display:flex;flex-direction:column;gap:6px;overflow:auto;max-height:calc(100% - 52px)}.item{display:grid;grid-template-columns:17px 1fr 18px;align-items:center;gap:7px;font-size:13px;min-height:22px}.item input{width:16px;height:16px;accent-color:var(--green)}.item.done span{text-decoration:line-through;color:#aaa}.del{opacity:0;border:0;background:none;color:#aaa;padding:0;font-size:17px}.item:hover .del{opacity:1}.add{border:0;background:none;color:var(--green);padding:8px 0 0;font-size:12px;text-align:left}.add:hover{text-decoration:underline}
+.photo-card{display:grid;grid-template-rows:auto 1fr auto}.photo-frame{position:relative;overflow:hidden;border-radius:7px;background:linear-gradient(135deg,#dfe9e8,#f6eadc);min-height:0;display:grid;place-items:center}.photo-frame img{width:100%;height:100%;object-fit:cover;display:none}.photo-placeholder{text-align:center;color:#777;padding:20px}.photo-placeholder .big{font-size:40px;margin-bottom:7px}.photo-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 9px;pointer-events:none}.photo-nav button{pointer-events:auto;border:0;background:rgba(255,255,255,.9);width:34px;height:34px;border-radius:50%;font-size:20px;color:#444}.dots{position:absolute;bottom:8px;left:0;right:0;text-align:center}.dotphoto{display:inline-block;width:7px;height:7px;border-radius:50%;border:1px solid white;background:rgba(255,255,255,.45);margin:0 3px}.dotphoto.active{background:white}.photo-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding-top:8px;min-height:48px}.photo-actions button{border:1px solid var(--line);background:white;border-radius:7px;padding:7px 8px;font-size:11px;color:#555;width:100%;height:100%}
+.photo-frame-overlay{position:fixed;inset:0;z-index:9999;display:none;background:#111}.photo-frame-overlay.show{display:block}.fullscreen-photo{width:100%;height:100%;position:relative;display:grid;place-items:center;background:#111}.fullscreen-photo img{width:100%;height:100%;object-fit:contain;display:none}.fullscreen-photo-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 28px;pointer-events:none}.fullscreen-photo-nav button{pointer-events:auto;border:0;background:rgba(255,255,255,.82);width:48px;height:48px;border-radius:50%;font-size:30px;color:#333}.fullscreen-controls{position:absolute;right:20px;bottom:18px;display:flex;gap:8px;opacity:.15;transition:opacity .2s}.fullscreen-photo:hover .fullscreen-controls{opacity:1}.fullscreen-controls button{border:1px solid rgba(255,255,255,.35);background:rgba(20,20,20,.65);color:white;border-radius:8px;padding:9px 13px;font-size:12px}.fullscreen-dots{position:absolute;left:0;right:0;bottom:16px;text-align:center;pointer-events:none}
+
+.setup{position:fixed;inset:0;background:rgba(30,30,27,.45);z-index:20;display:none;place-items:center}.setup.show{display:grid}.setup-box{width:min(620px,92vw);background:white;border-radius:16px;padding:24px;box-shadow:0 25px 80px rgba(0,0,0,.25)}.setup-box h2{font-family:Georgia,serif;font-weight:500;margin:0 0 8px}.setup-box p{color:#666;line-height:1.5}.setup-box input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin:5px 0 10px}.setup-actions{display:flex;justify-content:flex-end;gap:8px}.setup-actions button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 13px}.primary{background:#58744c!important;color:#fff;border-color:#58744c!important}
+
+@media(max-width:1000px){.app{padding:7px;gap:7px}.top{gap:7px}.middle{gap:7px}.right{gap:7px}.greeting{padding:14px}.weather{padding:12px 15px}.card{padding:10px}.calendar-panel{padding:9px}}
+</style>
+</head>
+<body>
+<div class="app">
+<section class="top">
+<div class="panel greeting"><div class="script">Good morning <span class="sun">☼</span></div><div class="clock" id="clock">--:--</div><div class="date" id="date"></div></div>
+<div class="panel weather" id="weather-mt"><div class="weather-title">Mt Barker</div><div class="weather-main"><div class="weather-current"><div class="weather-icon" id="mt-icon">☼</div><div><div class="temp" id="mt-temp">--°C</div><div class="condition" id="mt-condition">Loading…</div></div></div><div class="stats" id="mt-stats">Loading weather…</div><div class="forecast" id="mt-forecast"></div></div></div>
+<div class="panel weather" id="weather-adl"><div class="weather-title">Adelaide</div><div class="weather-main"><div class="weather-current"><div class="weather-icon" id="adl-icon">☼</div><div><div class="temp" id="adl-temp">--°C</div><div class="condition" id="adl-condition">Loading…</div></div></div><div class="stats" id="adl-stats">Loading weather…</div><div class="forecast" id="adl-forecast"></div></div></div>
+</section>
+
+<section class="middle">
+<div class="panel calendar-panel">
+<div class="calendar-head"><h1 id="monthTitle">Calendar</h1><div class="calendar-controls"><button class="ctrl" id="prev">‹</button><button class="ctrl" id="today">Today</button><button class="ctrl" id="next">›</button><button class="ctrl" id="connectGoogle">Connect Google</button><button class="ctrl">Month⌄</button></div></div>
+<div class="calendar-wrap"><table class="calendar"><thead><tr><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th></tr></thead><tbody id="calendarBody"></tbody></table></div>
+<div class="legend"><span><i class="dot lwork"></i>Work</span><span><i class="dot lhealth"></i>Health</span><span><i class="dot lfamily"></i>Family</span><span><i class="dot lsocial"></i>Social</span><span><i class="dot lother"></i>Other</span></div>
+</div>
+
+<div class="right">
+<div class="panel card"><div class="card-title"><div class="icon green">🛒</div><h2>Shopping list</h2></div><div class="list" id="shopping"></div><button class="add" onclick="addItem('shopping')">＋ Add item</button></div>
+<div class="panel card"><div class="card-title"><div class="icon orange">🍴</div><h2>Meal requests</h2></div><div class="list" id="meals"></div><button class="add" onclick="addItem('meals')">＋ Add item</button></div>
+<div class="panel card"><div class="card-title"><div class="icon blue">⌂</div><h2>Home to do list</h2></div><div class="list" id="home"></div><button class="add" onclick="addItem('home')">＋ Add item</button></div>
+<div class="panel card photo-card"><div class="card-title"><div class="icon purple">▣</div><h2>Photo slide show</h2></div><div class="photo-frame"><div class="photo-placeholder" id="placeholder"><div class="big">📷</div><div>Add some favourite photos</div></div><img id="photo" alt="Slideshow photo"><div class="photo-nav"><button onclick="previousPhoto()">‹</button><button onclick="nextPhoto()">›</button></div><div class="dots" id="dots"></div></div><div class="photo-actions"><button onclick="document.getElementById('photoUpload').click()">☁ Send a photo</button><button onclick="toggleSlideshow()" id="slideBtn">▷ Slideshow</button><button onclick="openPhotoFrame()">⛶ Photo frame</button><input id="photoUpload" type="file" accept="image/*" multiple></div></div>
+</div>
+</section>
+</div>
+
+<div class="photo-frame-overlay" id="photoFrameOverlay"><div class="fullscreen-photo"><img id="fullscreenPhoto" alt="Photo frame"><div class="fullscreen-photo-nav"><button onclick="previousPhoto()">‹</button><button onclick="nextPhoto()">›</button></div><div class="fullscreen-controls"><button onclick="toggleSlideshow()" id="fullscreenSlideBtn">▷ Slideshow</button><button onclick="closePhotoFrame()">× Exit photo frame</button></div><div class="fullscreen-dots" id="fullscreenDots"></div></div></div>
+
+<div class="setup" id="setup">
+<div class="setup-box">
+<h2>Connect Google Calendar</h2>
+<p>Paste the Google OAuth <b>Client ID</b> for this dashboard. The app will request read-only calendar access. Your Google password is never entered into this dashboard.</p>
+<label>Google Client ID</label><input id="clientIdInput" placeholder="1234567890-abc...apps.googleusercontent.com">
+<div class="setup-actions"><button onclick="closeSetup()">Cancel</button><button class="primary" onclick="saveClientId()">Save & Connect</button></div>
+</div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://jryxulhiopjitmhucjr.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_wbxhPK-XkTghCt4Ws3XIqw_5Jqmtb8b";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const SUPABASE_URL="https://jryxulhiopjitmhucjr.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_wbxhPK-XkTghCt4Ws3XIqw_5Jqmtb8b";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 
-const seed={shopping:['Milk','Chicken','Bread','Dog food','Apples','Dishwasher tablets'],meals:['Tacos','Butter chicken','Pasta bake','Stir fry','Beef stir fry','Nachos'],home:['Change light bulb','Clean bathroom','Vacuum','Organise garage','Book bin collection'],notes:['Book Maple grooming','Bunnings Saturday morning','Buy dishwasher tablets','Check tyre pressure','Call vet about vaccination']};
-let data=JSON.parse(localStorage.getItem('ourHomeData')||'null')||seed, type=null, note=false, cur=new Date(2026,7,1);
-const events={'2026-08-17':[['11:30am Dr H','health'],['4pm Physio','health']],'2026-08-18':[['12:30pm Mar','work'],['4pm Yello','other']],'2026-08-19':[['10-week Phys','health'],['Iron','other']],'2026-08-20':[['Iron','other'],['8am C82','health']],'2026-08-21':[['Pay day','pay'],['8am C82','health']],'2026-08-22':[['Iron','other'],["2pm Scotty's",'family']],'2026-08-23':[['4:30pm T1','health']],'2026-08-24':[['Iron','other'],['6:30pm Family','family']],'2026-08-25':[['Lucy catch up','family'],['4pm Greg','other']],'2026-08-26':[['20-week Phys','health'],['Iron','other']],'2026-08-28':[['Iron','other'],['6am P62','health']],'2026-08-29':[['Trevor Hab','social'],['6am P62','health']],'2026-08-30':[['Iron','other'],['6pm P182','health']],'2026-08-31':[['Iron','other'],['6am P62','health']],'2026-09-01':[['6pm P182','health'],['1pm Service','work']],'2026-09-02':[['23 week Phys','health'],['9:30am Phys','work']],'2026-09-03':[['8:30am PAR8','other']],'2026-09-04':[['Pay day','pay'],['9:30am Dr H','work']],'2026-09-05':[['Elena Crab','social']],'2026-09-06':[['6am P62','health'],['4:30pm T1','other']]};
-function save(){localStorage.setItem('ourHomeData',JSON.stringify(data))}function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function clock(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit'});document.getElementById('date').textContent=n.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}setInterval(clock,1000);clock();
-function week(){let n=new Date(),names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],s='';for(let i=0;i<5;i++){let d=new Date(n);d.setDate(n.getDate()+i);s+=`<div class="day"><div class="dayname">${i?' '+names[d.getDay()]:'Today'}</div><div class="daynum ${!i?'active':''}">${d.getDate()}</div><div class="stats">${i?2:3} events<br>${i%2?1:0} tasks</div></div>`}document.getElementById('week').innerHTML=s}week();
-function k(y,m,d){return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`}function calendar(){let y=cur.getFullYear(),m=cur.getMonth(),first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),start=(first.getDay()+6)%7,today=new Date(),day=1,s='';document.getElementById('month').textContent=cur.toLocaleDateString('en-AU',{month:'long',year:'numeric'});for(let r=0;r<6&&day<=days;r++){s+='<tr>';for(let c=0;c<7;c++){if((r==0&&c<start)||day>days){s+='<td></td>';continue}let list=events[k(y,m,day)]||[],itoday=y==today.getFullYear()&&m==today.getMonth()&&day==today.getDate();s+=`<td><span class="num ${itoday?'today':''}">${day}</span>`;list.slice(0,3).forEach(e=>s+=`<div class="event ${e[1]}">${esc(e[0])}</div>`);if(list.length>3)s+=`<div style="font-size:11px;color:#888">+ ${list.length-3} more</div>`;s+='</td>';day++}s+='</tr>'}document.getElementById('cal').innerHTML=s}calendar();document.getElementById('prev').onclick=()=>{cur.setMonth(cur.getMonth()-1);calendar()};document.getElementById('next').onclick=()=>{cur.setMonth(cur.getMonth()+1);calendar()};document.getElementById('today').onclick=()=>{let n=new Date();cur=new Date(n.getFullYear(),n.getMonth(),1);calendar()};
-let shoppingItems = [];
+const lists={shopping:["Milk","Chicken","Bread","Dog food","Apples","Dishwasher tablets"],meals:["Tacos","Butter chicken","Pasta bake","Stir fry","Beef stir fry","Nachos"],home:["Change light bulb","Clean bathroom","Vacuum","Organise garage","Book bin collection"]};
+try{Object.assign(lists,JSON.parse(localStorage.getItem("ourHomeLists")||"{}"))}catch(e){}
+function persist(){localStorage.setItem("ourHomeLists",JSON.stringify(lists))}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+
+let shoppingRows=[];
 
 function renderShopping(){
-  const el = document.getElementById('shopping');
-  el.innerHTML = shoppingItems.map(x => `
-    <div class="item ${x.completed ? 'done' : ''}" data-id="${x.id}">
-      <input type="checkbox" ${x.completed ? 'checked' : ''} onchange="toggleShopping(${x.id}, this.checked)">
-      <span>${esc(x.item)}</span>
-      <button class="x" onclick="removeShopping(${x.id})" aria-label="Delete ${esc(x.item)}">×</button>
-    </div>
-  `).join('');
+  document.getElementById("shopping").innerHTML=shoppingRows.map(x=>
+    `<div class="item ${x.completed?"done":""}">
+      <input type="checkbox" ${x.completed?"checked":""} onchange="toggleShopping(${x.id},this.checked)">
+      <span>${escapeHtml(x.item)}</span>
+      <button class="del" onclick="removeShopping(${x.id})">×</button>
+    </div>`
+  ).join("");
 }
 
 async function loadShopping(){
-  const {data: rows, error} = await supabaseClient
-    .from('shopping_items')
-    .select('id,item,completed,position,created_at')
-    .order('position', {ascending:true})
-    .order('created_at', {ascending:true});
+  const {data,error}=await supabaseClient
+    .from("shopping_items")
+    .select("id,item,completed,position,created_at")
+    .order("position",{ascending:true})
+    .order("created_at",{ascending:true});
 
-  if(error){
-    console.error('Shopping list load failed:', error);
-    document.getElementById('shopping').innerHTML =
-      '<div style="font-size:13px;color:#b45f5f">Unable to load shopping list.</div>';
-    return;
-  }
+  if(error){console.error("Shopping list load failed:",error);return}
 
-  shoppingItems = rows || [];
+  shoppingRows=data||[];
 
-  // Seed the shared list once if it is currently empty.
-  if(shoppingItems.length === 0){
-    const starter = seed.shopping.map((item, i) => ({item, position:i}));
-    const {data: inserted, error: insertError} = await supabaseClient
-      .from('shopping_items')
+  // Populate Supabase with the original dashboard's starter items once.
+  if(!shoppingRows.length){
+    const starter=lists.shopping.map((item,i)=>({item,position:i}));
+    const {data:inserted,error:insertError}=await supabaseClient
+      .from("shopping_items")
       .insert(starter)
-      .select('id,item,completed,position,created_at');
+      .select("id,item,completed,position,created_at");
 
-    if(!insertError && inserted){
-      shoppingItems = inserted.sort((a,b)=>a.position-b.position);
-    }
+    if(!insertError && inserted) shoppingRows=inserted;
   }
 
   renderShopping();
 }
 
 async function addShoppingItem(value){
-  const position = shoppingItems.length
-    ? Math.max(...shoppingItems.map(x => x.position || 0)) + 1
+  const position=shoppingRows.length
+    ? Math.max(...shoppingRows.map(x=>x.position||0))+1
     : 0;
-
-  const {error} = await supabaseClient
-    .from('shopping_items')
-    .insert({item:value, position});
-
-  if(error) console.error('Could not add shopping item:', error);
+  const {error}=await supabaseClient
+    .from("shopping_items")
+    .insert({item:value,position});
+  if(error) console.error("Shopping list add failed:",error);
+  await loadShopping();
 }
 
-async function toggleShopping(id, completed){
-  const {error} = await supabaseClient
-    .from('shopping_items')
+async function toggleShopping(id,completed){
+  const {error}=await supabaseClient
+    .from("shopping_items")
     .update({completed})
-    .eq('id', id);
-
-  if(error){
-    console.error('Could not update shopping item:', error);
-    return;
-  }
-
-  const item = shoppingItems.find(x => x.id === id);
-  if(item) item.completed = completed;
-  renderShopping();
+    .eq("id",id);
+  if(error) console.error("Shopping list update failed:",error);
+  await loadShopping();
 }
 
 async function removeShopping(id){
-  const {error} = await supabaseClient
-    .from('shopping_items')
+  const {error}=await supabaseClient
+    .from("shopping_items")
     .delete()
-    .eq('id', id);
-
-  if(error){
-    console.error('Could not delete shopping item:', error);
-  }
+    .eq("id",id);
+  if(error) console.error("Shopping list delete failed:",error);
+  await loadShopping();
 }
 
-function lists(){
-  ['meals','home'].forEach(t=>{
-    document.getElementById(t).innerHTML = data[t].map((x,i)=>
-      `<div class="item">
-        <input type="checkbox">
-        <span>${esc(x)}</span>
-        <button class="x" onclick="removeItem('${t}',${i})">×</button>
-      </div>`
-    ).join('');
-  });
-
-  document.getElementById('notes').innerHTML = data.notes.map((x,i)=>
-    `<div class="note">
-      <div class="noteText">${esc(x)}</div>
-      <button class="deleteNote" onclick="removeNote(${i})">×</button>
-    </div>`
-  ).join('');
+function renderList(name){
+  if(name==="shopping"){renderShopping();return}
+  document.getElementById(name).innerHTML=lists[name].map((x,i)=>
+    `<div class="item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done',this.checked)"><span>${escapeHtml(x)}</span><button class="del" onclick="removeItem('${name}',${i})">×</button></div>`
+  ).join("")
 }
 
-function openModal(t,n){
-  type=t; note=n;
-  document.getElementById('modal').classList.add('show');
-  document.getElementById('modal').querySelector('h3').textContent=n?'New note':'Add item';
-  document.getElementById('input').value='';
-  document.getElementById('input').focus();
-}
-function addItem(t){openModal(t,false)}
-function addNote(){openModal(null,true)}
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-
-async function saveModal(){
-  const v=document.getElementById('input').value.trim();
-  if(!v)return;
-
-  if(note){
-    data.notes.push(v);
-    save();
-    lists();
-  } else if(type === 'shopping'){
-    await addShoppingItem(v);
-  } else {
-    data[type].push(v);
-    save();
-    lists();
-  }
-
-  closeModal();
+function renderAll(){
+  renderList("shopping");
+  renderList("meals");
+  renderList("home");
 }
 
-function removeItem(t,i){data[t].splice(i,1);save();lists()}
-function removeNote(i){data.notes.splice(i,1);save();lists()}
+function addItem(name){
+  const v=prompt("Add an item:");
+  if(!v||!v.trim())return;
+  if(name==="shopping"){addShoppingItem(v.trim());return}
+  lists[name].push(v.trim());
+  persist();
+  renderList(name);
+}
 
-document.getElementById('input').addEventListener('keydown',e=>{
-  if(e.key==='Enter')saveModal();
-  if(e.key==='Escape')closeModal();
-});
+function removeItem(name,i){
+  lists[name].splice(i,1);
+  persist();
+  renderList(name);
+}
 
-lists();
+renderAll();
 loadShopping();
 
-supabaseClient
-  .channel('shopping-list-live')
-  .on('postgres_changes',
-      {event:'*', schema:'public', table:'shopping_items'},
-      () => loadShopping())
-  .subscribe((status)=>{
-    if(status === 'SUBSCRIBED'){
-      console.log('The Sarahs shopping list is live.');
-    }
-  });
-</script></body></html>
+supabaseClient.channel("shopping_items_live")
+  .on("postgres_changes",
+    {event:"*",schema:"public",table:"shopping_items"},
+    ()=>loadShopping()
+  )
+  .subscribe();
+
+function tick(){const n=new Date();document.getElementById("clock").textContent=n.toLocaleTimeString("en-AU",{hour:"numeric",minute:"2-digit"});document.getElementById("date").textContent=n.toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}
+tick();setInterval(tick,1000);
+
+const sampleEvents={"2026-08-17":[["11:30am Dr H","health"],["4pm Physio","health"]],"2026-08-18":[["12:30pm Mar","health"],["4pm Yello","other"]],"2026-08-19":[["10-week Phys","work"],["Iron","other"]],"2026-08-20":[["Iron","other"],["8am C82","work"]],"2026-08-21":[["Pay day","pay"],["8am C82","work"]],"2026-08-22":[["Iron","other"],["2pm Scotty's","family"]],"2026-08-23":[["4:30pm T1","work"]],"2026-08-24":[["Iron","work"]],"2026-08-25":[["Lucy catch up","family"],["4pm Greg","health"]],"2026-08-26":[["20-week Phys","work"],["Iron","other"]],"2026-08-27":[["Iron","work"]],"2026-08-28":[["Pay day","pay"]],"2026-08-29":[["Trevor Hab","social"],["6am P62","work"]],"2026-08-30":[["Iron","other"]],"2026-08-31":[["Iron","work"]]};
+let shown=new Date(2026,7,1),liveEvents={...sampleEvents};
+function key(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function renderCalendar(){const y=shown.getFullYear(),m=shown.getMonth();document.getElementById("monthTitle").textContent=shown.toLocaleDateString("en-AU",{month:"long",year:"numeric"});const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),start=(first.getDay()+6)%7;let day=1,out="";for(let r=0;r<6;r++){out+="<tr>";for(let c=0;c<7;c++){if((r===0&&c<start)||day>days){out+="<td></td>";continue}const d=new Date(y,m,day),k=key(d),n=new Date(),isToday=d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();out+=`<td><span class="daynum ${isToday?"today":""}">${day}</span>`;(liveEvents[k]||[]).slice(0,3).forEach(e=>out+=`<div class="event ${e[1]||"other"}">${escapeHtml(e[0])}</div>`);out+="</td>";day++}out+="</tr>";if(day>days)break}document.getElementById("calendarBody").innerHTML=out}
+renderCalendar();document.getElementById("prev").onclick=()=>{shown.setMonth(shown.getMonth()-1);renderCalendar()};document.getElementById("next").onclick=()=>{shown.setMonth(shown.getMonth()+1);renderCalendar()};document.getElementById("today").onclick=()=>{const n=new Date();shown=new Date(n.getFullYear(),n.getMonth(),1);renderCalendar()};
+
+const locations={mt:{lat:-35.0667,lon:138.8550,name:"Mt Barker",prefix:"mt"},adl:{lat:-34.9285,lon:138.6007,name:"Adelaide",prefix:"adl"}};
+function weatherIcon(code){if(code===0)return"☼";if([1,2].includes(code))return"◐";if(code===3)return"☁";if([51,53,55,61,63,65,80,81,82].includes(code))return"☁︎";if([71,73,75,85,86].includes(code))return"❄";if([95,96,99].includes(code))return"ϟ";return"☁"}
+function weatherText(code){if(code===0)return"Sunny";if([1,2].includes(code))return"Partly cloudy";if(code===3)return"Cloudy";if([51,53,55,61,63,65,80,81,82].includes(code))return"Rain";if([95,96,99].includes(code))return"Storms";return"Mixed"}
+async function loadWeather(loc){try{const u=`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,wind_direction_10m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Australia%2FAdelaide&forecast_days=5`;const d=await fetch(u).then(r=>r.json()),p=loc.prefix;document.getElementById(p+"-icon").textContent=weatherIcon(d.current.weather_code);document.getElementById(p+"-temp").textContent=Math.round(d.current.temperature_2m)+"°C";document.getElementById(p+"-condition").textContent=weatherText(d.current.weather_code);document.getElementById(p+"-stats").innerHTML=`Feels like&nbsp; ${Math.round(d.current.apparent_temperature)}°<br>Wind&nbsp; ${Math.round(d.current.wind_speed_10m)} km/h<br>Humidity&nbsp; ${Math.round(d.current.relative_humidity_2m)}%`;const names=["SUN","MON","TUE","WED","THU","FRI","SAT"];document.getElementById(p+"-forecast").innerHTML=d.daily.time.map((t,i)=>{const day=new Date(t+"T12:00:00");return `<div class="forecast-day">${names[day.getDay()]}<div class="ficon">${weatherIcon(d.daily.weather_code[i])}</div><div class="temps">${Math.round(d.daily.temperature_2m_max[i])}° / ${Math.round(d.daily.temperature_2m_min[i])}°</div></div>`}).join("")}catch(e){document.getElementById(loc.prefix+"-condition").textContent="Weather unavailable"}}
+loadWeather(locations.mt);loadWeather(locations.adl);setInterval(()=>{loadWeather(locations.mt);loadWeather(locations.adl)},30*60*1000);
+
+let photos=[];try{photos=JSON.parse(localStorage.getItem("ourHomePhotos")||"[]")}catch(e){}let photoIndex=0,slideshow=null;const photo=document.getElementById("photo"),placeholder=document.getElementById("placeholder"),dots=document.getElementById("dots");
+function renderPhotos(){if(!photos.length){photo.style.display="none";placeholder.style.display="block";dots.innerHTML="";return}placeholder.style.display="none";photo.style.display="block";photo.src=photos[photoIndex];dots.innerHTML=photos.map((_,i)=>`<span class="dotphoto ${i===photoIndex?"active":""}></span>`).join("");updateFullscreenPhoto()}
+function nextPhoto(){if(photos.length){photoIndex=(photoIndex+1)%photos.length;renderPhotos()}}function previousPhoto(){if(photos.length){photoIndex=(photoIndex-1+photos.length)%photos.length;renderPhotos()}}
+function toggleSlideshow(){if(slideshow){clearInterval(slideshow);slideshow=null}else{if(!photos.length){alert("Add some photos first.");return}slideshow=setInterval(nextPhoto,7000)}document.getElementById("slideBtn").textContent=slideshow?"Ⅱ Pause":"▷ Slideshow";const b=document.getElementById("fullscreenSlideBtn");if(b)b.textContent=slideshow?"Ⅱ Pause":"▷ Slideshow"}
+async function openPhotoFrame(){if(!photos.length){alert("Add some photos first.");return}document.getElementById("photoFrameOverlay").classList.add("show");updateFullscreenPhoto();if(document.documentElement.requestFullscreen){try{await document.documentElement.requestFullscreen()}catch(e){}}}
+async function closePhotoFrame(){document.getElementById("photoFrameOverlay").classList.remove("show");if(document.fullscreenElement){try{await document.exitFullscreen()}catch(e){}}}
+function updateFullscreenPhoto(){const i=document.getElementById("fullscreenPhoto"),d=document.getElementById("fullscreenDots");if(!photos.length){i.style.display="none";d.innerHTML="";return}i.style.display="block";i.src=photos[photoIndex];d.innerHTML=photos.map((_,x)=>`<span class="dotphoto ${x===photoIndex?"active":""}"></span>`).join("")}
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement)document.getElementById("photoFrameOverlay").classList.remove("show")});
+document.getElementById("photoUpload").addEventListener("change",e=>{const fs=[...e.target.files].filter(f=>f.type.startsWith("image/")).slice(0,8);if(!fs.length)return;let left=fs.length;fs.forEach(f=>{const r=new FileReader();r.onload=x=>{photos.push(x.target.result);left--;if(!left){photos=photos.slice(-8);localStorage.setItem("ourHomePhotos",JSON.stringify(photos));photoIndex=photos.length-1;renderPhotos()}};r.readAsDataURL(f)});e.target.value=""});renderPhotos();
+
+// Google Calendar OAuth (browser-only, read-only). Requires a Google Cloud OAuth Client ID.
+let googleClientId=localStorage.getItem("ourHomeGoogleClientId")||"1061234812940-kd2po1q3c7c8q3hmr9je5hhgm79rp5qf.apps.googleusercontent.com";
+let tokenClient=null;
+const calendarScope="https://www.googleapis.com/auth/calendar.readonly";
+function openSetup(){document.getElementById("clientIdInput").value=googleClientId;document.getElementById("setup").classList.add("show")}
+function closeSetup(){document.getElementById("setup").classList.remove("show")}
+function saveClientId(){const v=document.getElementById("clientIdInput").value.trim();if(!v)return;googleClientId=v;localStorage.setItem("ourHomeGoogleClientId",v);closeSetup();loadGoogleScript()}
+document.getElementById("connectGoogle").onclick=()=>{if(googleClientId){loadGoogleScript()}else{openSetup()}};
+function loadGoogleScript(){if(window.google?.accounts?.oauth2){initGoogle();return}const s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=initGoogle;document.head.appendChild(s)}
+function initGoogle(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:googleClientId,scope:calendarScope,callback:async r=>{if(r.access_token)await loadGoogleCalendars(r.access_token)}});tokenClient.requestAccessToken({prompt:"consent"})}
+async function loadGoogleCalendars(token){try{const c=await fetch("https://www.googleapis.com/calendar/v3/users/me/calendarList",{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());const calendars=(c.items||[]).filter(x=>x.selected!==false);const now=new Date(),start=new Date(now.getFullYear(),now.getMonth()-1,1),end=new Date(now.getFullYear(),now.getMonth()+3,1);const merged={};for(const cal of calendars){const u=`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cal.id)}/events?singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(start.toISOString())}&timeMax=${encodeURIComponent(end.toISOString())}&maxResults=2500`;const d=await fetch(u,{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());(d.items||[]).forEach(ev=>{const st=ev.start?.dateTime||ev.start?.date;if(!st)return;const dt=st.length===10?new Date(st+"T12:00:00"):new Date(st);const k=key(dt);merged[k]??=[];const colour=cal.backgroundColor||"#58744c";merged[k].push([ev.summary||"(No title)","other",colour])})}liveEvents=merged;renderCalendar()}catch(e){alert("Google Calendar could not be loaded. Check the OAuth setup and authorised origin.")}}
+if(googleClientId){} // stay disconnected until the user taps Connect.
+</script>
+</body>
+</html>
