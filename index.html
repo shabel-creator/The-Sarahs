@@ -212,19 +212,111 @@ function updateFullscreenPhoto(){const i=document.getElementById("fullscreenPhot
 document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement)document.getElementById("photoFrameOverlay").classList.remove("show")});
 document.getElementById("photoUpload").addEventListener("change",e=>{const fs=[...e.target.files].filter(f=>f.type.startsWith("image/")).slice(0,8);if(!fs.length)return;let left=fs.length;fs.forEach(f=>{const r=new FileReader();r.onload=x=>{photos.push(x.target.result);left--;if(!left){photos=photos.slice(-8);localStorage.setItem("ourHomePhotos",JSON.stringify(photos));photoIndex=photos.length-1;renderPhotos()}};r.readAsDataURL(f)});e.target.value=""});renderPhotos();
 
-// Google Calendar OAuth (browser-only, read-only). Requires a Google Cloud OAuth Client ID.
-let googleClientId=localStorage.getItem("ourHomeGoogleClientId")||"1061234812940-kd2po1q3c7c8q3hmr9je5hhgm79rp5qf.apps.googleusercontent.com";
-let tokenClient=null;
+// Google Calendar + Supabase authentication.
+// Supabase keeps the Google sign-in session across page refreshes.
+const SITE_URL="https://shabel-creator.github.io/The-Sarahs/";
 const calendarScope="https://www.googleapis.com/auth/calendar.readonly";
-function openSetup(){document.getElementById("clientIdInput").value=googleClientId;document.getElementById("setup").classList.add("show")}
-function closeSetup(){document.getElementById("setup").classList.remove("show")}
-function saveClientId(){const v=document.getElementById("clientIdInput").value.trim();if(!v)return;googleClientId=v;localStorage.setItem("ourHomeGoogleClientId",v);closeSetup();loadGoogleScript()}
-document.getElementById("connectGoogle").onclick=()=>{if(googleClientId){if(tokenClient)connectGoogleManually();else loadGoogleScript()}else{openSetup()}};
-function loadGoogleScript(){if(window.google?.accounts?.oauth2){initGoogle();return}const s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.onload=initGoogle;document.head.appendChild(s)}
-function initGoogle(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:googleClientId,scope:calendarScope,callback:async r=>{if(r.access_token)await loadGoogleCalendars(r.access_token)},error_callback:()=>{}});tokenClient.requestAccessToken({prompt:"none"})}
-function connectGoogleManually(){if(!tokenClient)return;tokenClient.requestAccessToken({prompt:"consent"})}
-async function loadGoogleCalendars(token){try{const c=await fetch("https://www.googleapis.com/calendar/v3/users/me/calendarList",{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());const calendars=(c.items||[]).filter(x=>x.selected!==false);const now=new Date(),start=new Date(now.getFullYear(),now.getMonth()-1,1),end=new Date(now.getFullYear(),now.getMonth()+3,1);const merged={};for(const cal of calendars){const u=`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cal.id)}/events?singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(start.toISOString())}&timeMax=${encodeURIComponent(end.toISOString())}&maxResults=2500`;const d=await fetch(u,{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());(d.items||[]).forEach(ev=>{const st=ev.start?.dateTime||ev.start?.date;if(!st)return;const dt=st.length===10?new Date(st+"T12:00:00"):new Date(st);const k=key(dt);merged[k]??=[];const colour=cal.backgroundColor||"#58744c";merged[k].push([ev.summary||"(No title)","other",colour])})}liveEvents=merged;renderCalendar()}catch(e){alert("Google Calendar could not be loaded. Check the OAuth setup and authorised origin.")}}
-if(googleClientId){setTimeout(()=>loadGoogleScript(),300)}
+let googleAccessToken=null;
+
+async function loadGoogleCalendars(token){
+  try{
+    const c=await fetch("https://www.googleapis.com/calendar/v3/users/me/calendarList",{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());
+    if(c.error) throw new Error(c.error.message||"Calendar list failed");
+    const calendars=(c.items||[]).filter(x=>x.selected!==false);
+    const now=new Date(),start=new Date(now.getFullYear(),now.getMonth()-1,1),end=new Date(now.getFullYear(),now.getMonth()+3,1);
+    const merged={};
+    for(const cal of calendars){
+      const u=`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(cal.id)}/events?singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(start.toISOString())}&timeMax=${encodeURIComponent(end.toISOString())}&maxResults=2500`;
+      const d=await fetch(u,{headers:{Authorization:"Bearer "+token}}).then(r=>r.json());
+      if(d.error) throw new Error(d.error.message||"Calendar events failed");
+      (d.items||[]).forEach(ev=>{
+        const st=ev.start?.dateTime||ev.start?.date;if(!st)return;
+        const dt=st.length===10?new Date(st+"T12:00:00"):new Date(st);
+        const k=key(dt);merged[k]??=[];
+        merged[k].push([ev.summary||"(No title)","other",cal.backgroundColor||"#58744c"]);
+      });
+    }
+    liveEvents=merged;
+    renderCalendar();
+    document.getElementById("connectGoogle").textContent="Google connected";
+  }catch(e){
+    console.error("Google Calendar could not be loaded:",e);
+    document.getElementById("connectGoogle").textContent="Connect Google";
+  }
+}
+
+async function signInWithGoogle(){
+  const {error}=await supabaseClient.auth.signInWithOAuth({
+    provider:"google",
+    options:{
+      redirectTo:SITE_URL,
+      scopes:calendarScope,
+      queryParams:{access_type:"offline",prompt:"consent"}
+    }
+  });
+  if(error){console.error(error);alert("Google sign-in could not be started: "+error.message);}
+}
+
+async function initialiseGoogleSession(){
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(session?.provider_token){
+    googleAccessToken=session.provider_token;
+    await loadGoogleCalendars(googleAccessToken);
+    return;
+  }
+  // The Supabase session can survive a refresh even when the short-lived
+  // Google provider token is no longer present. In that case, use Google's
+  // browser token client to silently obtain a fresh access token after the
+  // user has already granted access.
+  loadGoogleScript();
+}
+
+let googleTokenClient=null;
+function loadGoogleScript(){
+  if(window.google?.accounts?.oauth2){initGoogleTokenClient();return}
+  const s=document.createElement("script");
+  s.src="https://accounts.google.com/gsi/client";
+  s.onload=initGoogleTokenClient;
+  document.head.appendChild(s);
+}
+
+function initGoogleTokenClient(){
+  googleTokenClient=google.accounts.oauth2.initTokenClient({
+    client_id:"1061234812940-kd2po1q3c7c8q3hmr9je5hhgm79rp5qf.apps.googleusercontent.com",
+    scope:calendarScope,
+    callback:async r=>{
+      if(r.access_token){googleAccessToken=r.access_token;await loadGoogleCalendars(r.access_token)}
+    },
+    error_callback:()=>{}
+  });
+  // Only attempt silent access when Supabase confirms that this browser
+  // already has an authenticated session.
+  supabaseClient.auth.getSession().then(({data:{session}})=>{
+    if(session) googleTokenClient.requestAccessToken({prompt:"none"});
+  });
+}
+
+async function connectGoogle(){
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(!session){await signInWithGoogle();return;}
+  if(!googleTokenClient){loadGoogleScript();return}
+  googleTokenClient.requestAccessToken({prompt:"consent"});
+}
+
+document.getElementById("connectGoogle").onclick=connectGoogle;
+
+supabaseClient.auth.onAuthStateChange(async (event,session)=>{
+  if(event==="SIGNED_IN" && session?.provider_token){
+    googleAccessToken=session.provider_token;
+    await loadGoogleCalendars(session.provider_token);
+  }
+  if(event==="TOKEN_REFRESHED" && session?.provider_token){
+    googleAccessToken=session.provider_token;
+    await loadGoogleCalendars(session.provider_token);
+  }
+});
+
+initialiseGoogleSession();
 </script>
 </body>
 </html>
